@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="lib">
+      <UniqueIdentifier>{3C8C880B-A895-887C-3111-9F7C9D19947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw-3.3.6.bin.WIN64">
+      <UniqueIdentifier>{2D811D38-19A6-6CB8-42F1-51482E756BD6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw-3.3.6.bin.WIN64\include">
+      <UniqueIdentifier>{A0857B2E-8CD6-6670-B53A-5532A1EAF9D9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw-3.3.6.bin.WIN64\include\GLFW">
+      <UniqueIdentifier>{DFC42A2A-4B89-291A-14EF-59E48072C54F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glm">
+      <UniqueIdentifier>{8BD44779-F7B3-C614-00CC-51EB6C2A2D76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glm\glm">
+      <UniqueIdentifier>{5AAC00CB-C661-79C0-4F56-7397BB0A70C4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glm\glm\detail">
+      <UniqueIdentifier>{DCFAC5C7-C8DE-861D-313F-81701D42719F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glm\glm\simd">
+      <UniqueIdentifier>{F6D0CFB7-E2C9-EE09-0BFC-D38EF753CE15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glm\test">
+      <UniqueIdentifier>{FA3B1D2B-E69E-ACCF-8F24-E5857B667852}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glm\test\bug">
+      <UniqueIdentifier>{271F0AAF-1318-2901-3C4A-0E8628A2080D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glm\test\cmake">
+      <UniqueIdentifier>{0A2F1C9A-F612-DDEF-5F73-D7424B76C771}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glm\test\core">
+      <UniqueIdentifier>{B2784E90-1E8F-4C26-6706-D847D35B1DAE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glm\test\ext">
+      <UniqueIdentifier>{5A2C0AAF-4625-2901-6F57-0E865BAF080D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glm\test\gtc">
+      <UniqueIdentifier>{47340AAF-332D-2901-5C5F-0E8648B7080D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glm\test\gtx">
+      <UniqueIdentifier>{5C340AAF-482D-2901-715F-0E865DB7080D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glm\test\perf">
+      <UniqueIdentifier>{166F5590-8285-5326-CBFC-DE47375224AE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="VulkanRenderer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="VulkanRenderer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
