@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 #include <glm/ext/matrix_float4x4.hpp>
-#include "../VulkanRenderer.h"
+#include "VulkanRenderer.h"
 
 GLFWwindow* window;
 VulkanRenderer vulkanRenderer;
@@ -19,8 +19,6 @@ void initWindow(std::string wName = "Test Window", const int width = 800, const 
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 	window = glfwCreateWindow(width, height, wName.c_str(), nullptr, nullptr);
-
-
 }
 
 int main() {

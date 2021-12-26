@@ -5,6 +5,7 @@ workspace "VulkanTutorial"
 project "VulkanTutorial"
     kind "ConsoleApp"
     language "C++"
+    cppdialect "C++17"
     targetdir "bin/%{cfg.buildcfg}"
     includedirs {
         "C:/VulkanSDK/1.2.198.1/Include",

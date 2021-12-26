@@ -61,6 +61,7 @@
       <AdditionalIncludeDirectories>C:\VulkanSDK\1.2.198.1\Include;lib\glm;lib\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -80,6 +81,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -90,12 +92,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="VulkanRenderer.cpp" />
+    <ClInclude Include="src\Utilities.h" />
+    <ClInclude Include="src\VulkanRenderer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Utilities.h" />
-    <ClInclude Include="VulkanRenderer.h" />
+    <ClCompile Include="src\VulkanRenderer.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
