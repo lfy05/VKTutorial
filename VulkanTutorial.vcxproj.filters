@@ -68,5 +68,8 @@
     <ClInclude Include="src\VulkanRenderer.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\SwapChainSupportDetails.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -92,6 +92,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\SwapChainSupportDetails.h" />
     <ClInclude Include="src\Utilities.h" />
     <ClInclude Include="src\VulkanRenderer.h" />
   </ItemGroup>

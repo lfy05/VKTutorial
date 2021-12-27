@@ -26,7 +26,7 @@ int main() {
 	initWindow("Test Window", 800, 600);
 
 	// Create a vulkan rendere instance
-	if (vulkanRenderer.init(window) == EXIT_FAILURE) {
+	if (vulkanRenderer.initVulkan(window) == EXIT_FAILURE) {
 		return EXIT_FAILURE;
 	}
 
