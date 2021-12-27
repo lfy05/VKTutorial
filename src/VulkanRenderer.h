@@ -88,4 +88,6 @@ private:
 	VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
 	void createSwapChain();
 	std::vector<VkImageView> createImageViews();
+	void createGraphicsPipeline();
+	VkShaderModule createShaderModule(const std::vector<char>& code);
 };

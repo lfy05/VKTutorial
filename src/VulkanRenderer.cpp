@@ -12,6 +12,7 @@
 #include <algorithm>
 
 #define GLFW_EXPOSE_NATIVE_WIN32
+#include <fstream>
 #include <GLFW/glfw3native.h>
 
 #include "SwapChainSupportDetails.h"
@@ -40,6 +41,23 @@ static void PopulateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT&
 	createInfo.pfnUserCallback = debugCallback;
 }
 
+static std::vector<char> readFile(const std::string& filename) {
+	std::ifstream file(filename, std::ios::ate | std::ios::binary);
+
+	if (!file.is_open()) {
+		throw std::runtime_error("Failed to open file");
+	}
+
+	size_t fileSize = file.tellg();
+	std::vector<char> buffer(fileSize);
+
+	file.seekg(0);
+	file.read(buffer.data(), fileSize);
+
+	file.close();
+	return buffer;
+}
+
 int VulkanRenderer::initVulkan(GLFWwindow* newWindow) {
 	window = newWindow;
 
@@ -50,6 +68,7 @@ int VulkanRenderer::initVulkan(GLFWwindow* newWindow) {
 		getPhysicalDevice();
 		createLogicalDevice();
 		createSwapChain();
+		createGraphicsPipeline();
 	}
 	catch (const std::runtime_error& e) {
 		printf("ERROR: %s\n", e.what());
@@ -523,4 +542,54 @@ std::vector<VkImageView> VulkanRenderer::createImageViews() {
 	}
 
 	return std::vector<VkImageView>();
+}
+
+void VulkanRenderer::createGraphicsPipeline() {
+	auto vertShaderCode = readFile("D:/VKTutorial/shaders/vert.spv");
+	auto fragShaderCode = readFile("D:/VKTutorial/shaders/frag.spv");
+
+	VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);
+	VkShaderModule fragShaderModule = createShaderModule(fragShaderCode);
+
+	VkPipelineShaderStageCreateInfo vertShaderStageInfo{};
+	vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+	vertShaderStageInfo.stage = VK_SHADER_STAGE_VERTEX_BIT;
+	vertShaderStageInfo.module = vertShaderModule;			// shader module for the 
+	vertShaderStageInfo.pName = "main";
+
+	VkPipelineShaderStageCreateInfo fragShaderStageInfo{};
+	fragShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+	fragShaderStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
+	fragShaderStageInfo.module = fragShaderModule;
+	fragShaderStageInfo.pName = "main";
+
+	VkPipelineShaderStageCreateInfo shaderStages[] = {
+		vertShaderStageInfo,
+		fragShaderStageInfo
+	};
+
+
+	//Shader modules are just a thin wrapper around the shader bytecode
+	//that we've previously loaded from a file and the functions defined in it.
+	//The compilation and linking of the SPIR-V bytecode to machine code for execution
+	//by the GPU doesn't happen until the graphics pipeline is created.
+	//That means that we're allowed to destroy the shader modules again as soon as
+	//pipeline creation is finished, which is why we'll make them local variables
+	//in the createGraphicsPipeline function instead of class members.
+	vkDestroyShaderModule(mainDevice.logicalDevice, fragShaderModule, nullptr);
+	vkDestroyShaderModule(mainDevice.logicalDevice, vertShaderModule, nullptr);
+}
+
+VkShaderModule VulkanRenderer::createShaderModule(const std::vector<char>& code) {
+	VkShaderModuleCreateInfo createInfo{};
+	createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	createInfo.codeSize = code.size();
+	createInfo.pCode = reinterpret_cast<const uint32_t*>(code.data());
+
+	VkShaderModule shaderModule;
+	if (vkCreateShaderModule(mainDevice.logicalDevice, &createInfo, nullptr, &shaderModule) != VK_SUCCESS) {
+		throw std::runtime_error("Failed to create shader module");
+	}
+
+	return shaderModule;
 }
