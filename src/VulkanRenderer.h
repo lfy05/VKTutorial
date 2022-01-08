@@ -34,6 +34,7 @@ private:
 	std::vector<VkImageView> swapChainImageViews;
 	VkFormat swapChainImageFormat;
 	VkExtent2D swapChainExtent;
+	VkPipelineLayout pipelineLayout;
 
 	/* Vulkan Functions*/
 	// - create functions
@@ -90,4 +91,7 @@ private:
 	std::vector<VkImageView> createImageViews();
 	void createGraphicsPipeline();
 	VkShaderModule createShaderModule(const std::vector<char>& code);
+
+	// -- render passes
+	void createRenderPass();
 };
