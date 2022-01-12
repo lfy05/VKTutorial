@@ -11,6 +11,7 @@ class VulkanRenderer {
 public:
 	int initVulkan(GLFWwindow* newWindow);
 	void cleanUp();
+	void drawFrame();
 
 private:
 	GLFWwindow* window;
@@ -34,13 +35,25 @@ private:
 	std::vector<VkImageView> swapChainImageViews;
 	VkFormat swapChainImageFormat;
 	VkExtent2D swapChainExtent;
+	VkRenderPass renderPass;
 	VkPipelineLayout pipelineLayout;
+	VkPipeline graphicsPipeline;
+	std::vector<VkFramebuffer> swapChainFramebuffers;
+	VkCommandPool commandPool;
+	std::vector<VkCommandBuffer> commandBuffers;
+
+	VkSemaphore imageAvailableSemaphore;
+	VkSemaphore renderFinishedSemaphore;
 
 	/* Vulkan Functions*/
 	// - create functions
 	void createInstance();
 	void createLogicalDevice();
 	void createSurface();
+	void createFrameBuffers();
+	void createCommandPool();
+	void createCommandBuffers();
+	void createSemaphores();
 
 	// - Get Functions
 	void getPhysicalDevice();
@@ -52,6 +65,7 @@ private:
 
 	// -- getter functions
 	QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
+
 
 	const std::vector<const char*> validationLayers = {
 		"VK_LAYER_KHORNOS_validation"
